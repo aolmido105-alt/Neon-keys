@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEON KEYS</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;display:grid;place-items:center;
+ padding:20px;background:#090611;color:#fff;
+ font-family:Arial,sans-serif
+}
+.card{
+ width:100%;max-width:400px;padding:28px;
+ background:#160e25;border:1px solid #b45cff;
+ border-radius:22px;text-align:center;
+ box-shadow:0 0 30px #a855f755
+}
+h1{color:#c084fc;letter-spacing:4px}
+p{color:#c4b5d5;line-height:1.6}
+input,button{
+ width:100%;padding:14px;margin-top:12px;
+ border-radius:10px;font-size:15px
+}
+input{background:#090611;color:#fff;border:1px solid #8051a8}
+button{
+ background:#a855f7;color:white;border:0;
+ font-weight:bold;cursor:pointer
+}
+#message{overflow-wrap:anywhere}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>NEON KEYS</h1>
+<p>Welcome to the next generation.</p>
+<input id="key" placeholder="Enter your NEON key">
+<button onclick="copyKey()">COPY KEY</button>
+<p id="message">Your key goes here.</p>
+</div>
+<script>
+async function copyKey(){
+ const key=document.getElementById('key').value.trim();
+ const msg=document.getElementById('message');
+ if(!key){msg.textContent='Enter a key first.';return}
+ try{
+  await navigator.clipboard.writeText(key);
+  msg.textContent='Key copied successfully!';
+ }catch(e){
+  msg.textContent='Select the key and copy it manually.';
+ }
+}
+</script>
+</body>
+</html>
